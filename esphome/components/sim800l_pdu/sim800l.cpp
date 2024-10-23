@@ -10,6 +10,15 @@ static const char *const TAG = "sim800l";
 const char ASCII_CR = 0x0D;
 const char ASCII_LF = 0x0A;
 
+String byteToHexString(byte i) {
+  // Функция преобразования числового значения байта в шестнадцатиричное (HEX)
+  String hex = String(i, HEX);
+  if (hex.length() == 1)
+    hex = "0" + hex;
+  hex.toUpperCase();
+  return hex;
+}
+
 void Sim800LComponent::update() {
   if (this->watch_dog_++ == 2) {
     this->state_ = STATE_INIT;
